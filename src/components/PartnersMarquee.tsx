@@ -149,10 +149,10 @@ export default function PartnersMarquee() {
   };
 
   return (
-    <section className="py-20 bg-slate-50 border-t border-sky-100/50">
+    <section className="py-6 sm:py-8 bg-slate-50 border-t border-sky-100/50">
       <div className="container mx-auto px-6">
         {/* Title Block matching the screenshot */}
-        <div className="flex flex-col items-center justify-center mb-16">
+        <div className="flex flex-col items-center justify-center mb-10">
           <h2 className="text-3xl font-extrabold font-heading text-slate-800 text-center tracking-tight">
             Our Brands / Our Collaborators
           </h2>

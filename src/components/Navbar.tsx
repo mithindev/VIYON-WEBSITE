@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const centerLinks = [
@@ -87,20 +87,21 @@ export default function Navbar() {
             <Link
               to="/contact"
               className={cn(
-                "text-sm font-semibold transition-colors duration-200",
+                "px-4 py-2 rounded-full text-sm font-semibold transition-all duration-200",
                 isActive("/contact")
-                  ? "text-black"
-                  : "text-neutral-700 hover:text-black"
+                  ? "text-black bg-white/40 shadow-sm"
+                  : "text-neutral-700 hover:text-black hover:bg-white/25 bg-white/10"
               )}
             >
               Contact
             </Link>
-            <Link
-              to="/contact"
-              className="inline-flex items-center justify-center bg-black text-white hover:bg-neutral-900 transition-all rounded-full px-5 py-2 text-xs font-semibold shadow-md hover:-translate-y-0.5 hover:shadow-lg duration-200"
+            <a
+              href="tel:+919486796006"
+              className="inline-flex items-center justify-center bg-sky-600 hover:bg-sky-700 text-white transition-all rounded-full px-4 py-2 text-xs font-semibold shadow-md hover:-translate-y-0.5 hover:shadow-lg duration-200 gap-1.5"
             >
-              Get Started
-            </Link>
+              <Phone className="h-3.5 w-3.5" />
+              Call: +91 94867 96006
+            </a>
           </div>
 
           {/* Hamburger */}
@@ -157,12 +158,13 @@ export default function Navbar() {
                 variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
                 className="mt-4"
               >
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center bg-sky-500 text-white hover:bg-sky-600 transition-all rounded-full px-8 py-3 text-base font-bold shadow-md hover:-translate-y-0.5"
+                <a
+                  href="tel:+919486796006"
+                  className="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white transition-all rounded-full px-8 py-3 text-base font-bold shadow-md hover:-translate-y-0.5 gap-2"
                 >
-                  Get Started
-                </Link>
+                  <Phone className="h-5 w-5" />
+                  Call: +91 94867 96006
+                </a>
               </motion.div>
             </motion.div>
           </motion.div>

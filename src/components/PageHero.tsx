@@ -15,7 +15,7 @@ export default function PageHero({ label, title, subtitle, currentPage, classNam
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-sky-gradient pt-28 sm:pt-40 pb-14 sm:pb-20",
+        "relative overflow-hidden bg-sky-gradient pt-28 sm:pt-36 pb-6 sm:pb-8",
         className
       )}
     >

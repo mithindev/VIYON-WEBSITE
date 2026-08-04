@@ -148,7 +148,7 @@ export default function OurWorks() {
       />
 
       {/* Filter Tabs */}
-      <section className="py-8 sm:py-12 bg-white border-b border-sky-100/50">
+      <section className="py-3 sm:py-4 bg-white border-b border-sky-100/50">
         <div className="container mx-auto px-6">
           <div className="flex flex-wrap justify-center gap-3">
             {categories.map((cat) => (
@@ -169,7 +169,7 @@ export default function OurWorks() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-16">
+      <section className="py-5 sm:py-6">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div
             layout

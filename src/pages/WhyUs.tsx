@@ -60,9 +60,9 @@ export default function WhyUs() {
       />
 
       {/* Differentiators Section */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-5 sm:py-8 bg-white">
         <div className="container mx-auto px-6">
-          <div className="space-y-16 sm:space-y-24">
+          <div className="space-y-12 sm:space-y-16">
             {features.map((item, i) => {
               const Icon = item.icon;
               const isEven = i % 2 === 0;
@@ -114,9 +114,9 @@ export default function WhyUs() {
       </section>
 
       {/* Testimonials */}
-      <section className="py-14 sm:py-24 bg-sky-pale">
+      <section className="py-5 sm:py-8 bg-sky-pale">
         <div className="container mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-10 sm:mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-8 sm:mb-10">
             <span className="section-label">Testimonials</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-foreground mt-3 mb-4">
               What Our Clients Say
@@ -153,7 +153,7 @@ export default function WhyUs() {
       </section>
 
       {/* Certifications & Badges */}
-      <section className="py-12 sm:py-20 bg-white">
+      <section className="py-5 sm:py-7 bg-white">
         <div className="container mx-auto px-6">
           <div className="flex flex-col sm:flex-row gap-6 sm:gap-8 items-center justify-center max-w-4xl mx-auto">
             <div className="bg-sky-light/40 border border-sky-primary/20 rounded-2xl p-6 sm:p-8 flex items-center gap-4 sm:gap-6 max-w-md w-full">
@@ -179,7 +179,7 @@ export default function WhyUs() {
       </section>
 
       {/* Call to Action */}
-      <section className="bg-sky-gradient py-20 text-center text-white relative overflow-hidden">
+      <section className="bg-sky-gradient py-7 sm:py-8 text-center text-white relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading mb-4">
             Build Your Own Solar Grid with Viyon

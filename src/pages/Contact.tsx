@@ -39,8 +39,8 @@ export default function Contact() {
   };
 
   return (
-    <div className="pt-24 min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-white">
-      <div className="container mx-auto px-4 sm:px-6 py-8 sm:py-10">
+    <div className="pt-28 sm:pt-32 min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-white">
+      <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-5">
 
         {/* Section Header */}
         <div className="text-center mb-8">

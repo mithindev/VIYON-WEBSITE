@@ -1,5 +1,5 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef, useState } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Sun,
@@ -60,10 +60,7 @@ function Reveal({
 }
 
 export default function Index() {
-  const heroRef = useRef<HTMLElement>(null);
-  const { scrollYProgress } = useScroll({ target: heroRef, offset: ["start start", "end start"] });
-  const heroImageY = useTransform(scrollYProgress, [0, 1], ["0%", "12%"]);
-  const heroTextY  = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+
 
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(2);
 
@@ -100,7 +97,6 @@ export default function Index() {
 
       {/* ── HERO SECTION ──────────────────────────────────────────────────────── */}
       <section
-        ref={heroRef}
         className="relative min-h-screen lg:h-screen flex items-center overflow-hidden bg-gradient-to-br from-sky-50 via-sky-50/50 to-white pt-20 lg:pt-24 pb-8 lg:pb-0"
       >
         {/* Soft background ambient glows */}
@@ -114,7 +110,7 @@ export default function Index() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center w-full">
 
             {/* LEFT: Text & Value Proposition */}
-            <motion.div style={{ y: heroTextY }} className="flex flex-col">
+            <div className="flex flex-col">
 
               {/* Active Badge */}
               <motion.div
@@ -202,12 +198,11 @@ export default function Index() {
                   <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform duration-300" />
                 </Link>
               </motion.div>
-            </motion.div>
+            </div>
 
             {/* RIGHT: Image Showcase */}
             <motion.div
               className="relative flex items-center justify-center w-full"
-              style={{ y: heroImageY }}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 1.0, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
@@ -289,7 +284,7 @@ export default function Index() {
       <StatStrip />
 
       {/* ══════════════ ABOUT PREVIEW ══════════════ */}
-      <section className="py-16 sm:py-28 bg-white">
+      <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -346,7 +341,7 @@ export default function Index() {
 
       {/* ══════════════ SERVICES PREVIEW (3D CAROUSEL) ══════════════ */}
       <section
-        className="py-16 sm:py-28 relative overflow-hidden"
+        className="py-6 sm:py-8 relative overflow-hidden"
         style={{ background: "linear-gradient(160deg, #e0f4ff 0%, #d0edfb 50%, #e8f8ff 100%)" }}
       >
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-sky-200/50 blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
@@ -400,7 +395,7 @@ export default function Index() {
               })}
             </div>
 
-            <div className="relative w-full max-w-[700px] h-[30px] mt-14 z-20">
+            <div className="relative w-full max-w-[700px] h-[30px] mt-10 z-20">
               {carouselSlides.map((slide, i) => {
                 const count = carouselSlides.length;
                 let diff = i - activeCarouselIndex;
@@ -445,7 +440,7 @@ export default function Index() {
       </section>
 
       {/* ══════════════ WHY CHOOSE US ══════════════ */}
-      <section className="py-16 sm:py-28 bg-white">
+      <section className="py-6 sm:py-8 bg-white">
         <div className="container mx-auto px-6">
           <Reveal direction="none" className="text-center max-w-2xl mx-auto mb-14">
             <span className="section-label">Why Choose Us</span>
@@ -481,7 +476,7 @@ export default function Index() {
             })}
           </div>
 
-          <Reveal direction="up" delay={0.2} className="text-center mt-12">
+          <Reveal direction="up" delay={0.2} className="text-center mt-8">
             <Button asChild variant="outline">
               <Link to="/why-us">Discover Our Differentiators</Link>
             </Button>
@@ -494,7 +489,7 @@ export default function Index() {
 
       {/* ══════════════ CTA BANNER ══════════════ */}
       <section
-        className="relative py-16 sm:py-28 text-center overflow-hidden"
+        className="relative py-6 sm:py-10 text-center overflow-hidden"
         style={{ background:"linear-gradient(135deg,hsl(200,82%,40%) 0%,hsl(196,90%,52%) 55%,hsl(200,85%,66%) 100%)" }}
       >
         <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-white/10 blur-3xl pointer-events-none -translate-x-1/2 -translate-y-1/2" />

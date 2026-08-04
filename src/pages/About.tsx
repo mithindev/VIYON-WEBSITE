@@ -30,7 +30,7 @@ export default function About() {
       />
 
       {/* Our Story */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-5 sm:py-8 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
@@ -55,7 +55,7 @@ export default function About() {
               transition={{ duration: 0.6, delay: 0.1 }}
             >
               <span className="section-label">Our Story</span>
-              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-foreground mt-3 mb-6">
+              <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-foreground mt-3 mb-4">
                 From Vision to Clean Energy Leadership
               </h2>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
@@ -79,7 +79,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-12 sm:py-20 bg-sky-pale">
+      <section className="py-5 sm:py-8 bg-sky-pale">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
@@ -125,9 +125,9 @@ export default function About() {
       <StatStrip />
 
       {/* Core Values */}
-      <section className="py-14 sm:py-24 bg-white">
+      <section className="py-5 sm:py-8 bg-white">
         <div className="container mx-auto px-6">
-          <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="section-label">Values</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-foreground mt-3 mb-4">
               What Viyon Stands For
