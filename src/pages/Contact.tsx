@@ -3,14 +3,16 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { toast } from "sonner";
 import { MapPin, Phone, Mail, Send } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Input, Textarea, Label } from "@/components/ui/form-fields";
 import { Button } from "@/components/ui/button";
 
 const contactFormSchema = z.object({
-  subject: z.string().min(1, { message: "Please select a subject." }),
+  category: z.string().min(1, { message: "Please select a category." }),
   name: z.string().min(2, { message: "Name must be at least 2 characters." }),
   phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
+  consumption: z.string().min(1, { message: "Consumption units are required." }),
+  ebNumber: z.string().optional(),
   message: z.string().min(5, { message: "Message must be at least 5 characters." }),
 });
 
@@ -21,17 +23,33 @@ export default function Contact() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors, isSubmitting },
   } = useForm<ContactFormValues>({
     resolver: zodResolver(contactFormSchema),
-    defaultValues: { subject: "", name: "", phone: "", email: "", message: "" },
+    defaultValues: { category: "", name: "", phone: "", consumption: "", ebNumber: "", message: "" },
   });
+
+  const consumptionValue = watch("consumption");
 
   const onSubmit = async (data: ContactFormValues) => {
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
-      console.log("Contact form submitted:", data);
-      toast.success("Message Sent! We will contact you shortly.");
+      const messageText = `*New Solar Inquiry from Website*
+
+*Name:* ${data.name}
+*Phone:* ${data.phone}
+*Category:* ${data.category}
+*Approx. Consumption:* ${data.consumption}
+*EB Number:* ${data.ebNumber || "Not Provided"}
+
+*Message:*
+${data.message}`;
+
+      const encodedMessage = encodeURIComponent(messageText);
+      const whatsappUrl = `https://wa.me/916381188563?text=${encodedMessage}`;
+      window.open(whatsappUrl, "_blank");
+      
+      toast.success("Redirecting to WhatsApp...");
       reset();
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -118,7 +136,7 @@ export default function Contact() {
 
             <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
 
-              {/* Name + Subject row */}
+              {/* Name + Category row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <Label htmlFor="name" className="text-xs font-semibold text-slate-600">Your Name</Label>
@@ -126,24 +144,23 @@ export default function Contact() {
                   {errors.name && <p className="text-red-500 text-[11px]">{errors.name.message}</p>}
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="subject" className="text-xs font-semibold text-slate-600">Subject</Label>
+                  <Label htmlFor="category" className="text-xs font-semibold text-slate-600">Choose Category</Label>
                   <select
-                    id="subject"
+                    id="category"
                     className="w-full text-sm border border-slate-200 rounded-lg px-3 py-2 bg-white text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-400 focus:border-sky-400 transition"
-                    {...register("subject")}
+                    {...register("category")}
                     disabled={isSubmitting}
                   >
-                    <option value="">Select a subject</option>
-                    <option value="sales">New Solar Project</option>
-                    <option value="support">Technical Support</option>
-                    <option value="careers">Careers</option>
-                    <option value="partnership">Partnership</option>
+                    <option value="">Select a category</option>
+                    <option value="Residential">Residential</option>
+                    <option value="Commercial">Commercial</option>
+                    <option value="Residency">Residency</option>
                   </select>
-                  {errors.subject && <p className="text-red-500 text-[11px]">{errors.subject.message}</p>}
+                  {errors.category && <p className="text-red-500 text-[11px]">{errors.category.message}</p>}
                 </div>
               </div>
 
-              {/* Phone + Email row */}
+              {/* Phone + Consumption row */}
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div className="space-y-1">
                   <Label htmlFor="phone" className="text-xs font-semibold text-slate-600">Phone Number</Label>
@@ -151,11 +168,28 @@ export default function Contact() {
                   {errors.phone && <p className="text-red-500 text-[11px]">{errors.phone.message}</p>}
                 </div>
                 <div className="space-y-1">
-                  <Label htmlFor="email" className="text-xs font-semibold text-slate-600">Email Address</Label>
-                  <Input id="email" type="email" placeholder="you@example.com" disabled={isSubmitting} {...register("email")} />
-                  {errors.email && <p className="text-red-500 text-[11px]">{errors.email.message}</p>}
+                  <Label htmlFor="consumption" className="text-xs font-semibold text-slate-600">Consumption in units (approx)</Label>
+                  <Input id="consumption" type="text" placeholder="e.g. 350 units" disabled={isSubmitting} {...register("consumption")} />
+                  {errors.consumption && <p className="text-red-500 text-[11px]">{errors.consumption.message}</p>}
                 </div>
               </div>
+
+              {/* Optional EB Number (shown dynamically) */}
+              <AnimatePresence>
+                {consumptionValue && consumptionValue.trim() !== "" && (
+                  <motion.div
+                    initial={{ opacity: 0, height: 0 }}
+                    animate={{ opacity: 1, height: "auto" }}
+                    exit={{ opacity: 0, height: 0 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="space-y-1 overflow-hidden"
+                  >
+                    <Label htmlFor="ebNumber" className="text-xs font-semibold text-slate-600">EB Number (Optional)</Label>
+                    <Input id="ebNumber" type="text" placeholder="e.g. 02-123-004-56" disabled={isSubmitting} {...register("ebNumber")} />
+                    {errors.ebNumber && <p className="text-red-500 text-[11px]">{errors.ebNumber.message}</p>}
+                  </motion.div>
+                )}
+              </AnimatePresence>
 
               {/* Message */}
               <div className="space-y-1">
