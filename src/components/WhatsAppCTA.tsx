@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Sun, BatteryCharging, Zap, ShieldCheck } from "lucide-react";
 
-const WHATSAPP_NUMBER = "918807003005"; // Viyon Smart Solutions Phone
+const WHATSAPP_NUMBER = "918807003005"; // Veiyon Smart Solutions Phone
 
 const options = [
   { name: "On-Grid", icon: Sun, msg: "On-Grid Solar System" },
@@ -16,7 +16,7 @@ export default function WhatsAppCTA() {
 
   const handleSelectOption = (option: typeof options[0]) => {
     const text = encodeURIComponent(
-      `Hi Viyon Smart Solutions! I'm visiting your website and would like to get a sizing inquiry & quote for a ${option.msg}. Please share the details.`
+      `Hi Veiyon Smart Solutions! I'm visiting your website and would like to get a sizing inquiry & quote for a ${option.msg}. Please share the details.`
     );
     window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${text}`, "_blank");
   };

@@ -98,8 +98,8 @@ export default function Contact() {
             {/* Google Maps embed */}
             <div className="rounded-xl overflow-hidden border border-sky-100 shadow-sm h-44 w-full mt-1">
               <iframe
-                title="Viyon Office Location"
-                src="https://maps.google.com/maps?q=Chettikulam+Jn%2C+Nagercoil&t=&z=14&ie=UTF8&iwloc=&output=embed"
+                title="Veiyon Office Location"
+                src="https://maps.google.com/maps?q=VEIYON%20SMART%20SOLUTIONS%20Nagercoil&t=&z=16&ie=UTF8&iwloc=&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}

@@ -8,13 +8,13 @@ const features = [
   {
     icon: Award,
     title: "Proven Expertise",
-    desc: "Viyon Smart Solutions delivers complex mechanical mounting layouts and custom wiring. With over 15 years of solar engineering expertise across our team, we ensure structural wind-load compliance and stable net metering.",
+    desc: "Veiyon Smart Solutions delivers complex mechanical mounting layouts and custom wiring. With over 15 years of solar engineering expertise across our team, we ensure structural wind-load compliance and stable net metering.",
     image: "/assets/7.5kw_cgl.jpg"
   },
   {
     icon: ShieldCheck,
     title: "Top-Tier Products",
-    desc: "We collaborate with recognized domestic and international solar module, inverter, and battery manufacturers. Viyon systems utilize modules from Premier Energies, WAAREE, and Adani Solar for solid efficiency.",
+    desc: "We collaborate with recognized domestic and international solar module, inverter, and battery manufacturers. Veiyon systems utilize modules from Premier Energies, WAAREE, and Adani Solar for solid efficiency.",
     image: "/assets/IMG20221231154653.jpg"
   },
   {
@@ -26,19 +26,19 @@ const features = [
   {
     icon: Leaf,
     title: "Eco-Verified & Sustainable",
-    desc: "Going solar with Viyon actively offsets local carbon emission profiles. We design setups optimized for maximum generation efficiency to speed up your investment returns.",
+    desc: "Going solar with Veiyon actively offsets local carbon emission profiles. We design setups optimized for maximum generation efficiency to speed up your investment returns.",
     image: "/assets/7.5kw_cgl_topview.jpg"
   }
 ];
 
 const testimonials = [
   {
-    quote: "We installed a 5kW On-Grid solar setup at our house in Salem. Our monthly utility bill went from ₹6,500 down to under ₹800. The Viyon installation crew handled all government subsidy paperwork perfectly.",
+    quote: "We installed a 5kW On-Grid solar setup at our house in Salem. Our monthly utility bill went from ₹6,500 down to under ₹800. The Veiyon installation crew handled all government subsidy paperwork perfectly.",
     author: "Karthikeyan S.",
     role: "Homeowner, Salem"
   },
   {
-    quote: "Our factory required a robust hybrid backup solution for critical automated machinery. Viyon designed a custom 50kVA Hybrid setup with lithium storage. Zero production downtime since installation.",
+    quote: "Our factory required a robust hybrid backup solution for critical automated machinery. Veiyon designed a custom 50kVA Hybrid setup with lithium storage. Zero production downtime since installation.",
     author: "Meenakshi Sundaram",
     role: "Director, MS Textiles"
   },
@@ -53,8 +53,8 @@ export default function WhyUs() {
   return (
     <div>
       <PageHero
-        label="The Viyon Difference"
-        title="Why Choose Viyon Smart Solutions"
+        label="The Veiyon Difference"
+        title="Why Choose Veiyon Smart Solutions"
         subtitle="Uncompromising structural design, top-tier module partners, and Nagercoil's most trusted solar service crew."
         currentPage="Why Us"
       />
@@ -122,7 +122,7 @@ export default function WhyUs() {
               What Our Clients Say
             </h2>
             <p className="text-muted-foreground text-sm">
-              Discover how Viyon helps households and industries save money through custom solar arrays.
+              Discover how Veiyon helps households and industries save money through custom solar arrays.
             </p>
           </div>
 
@@ -182,7 +182,7 @@ export default function WhyUs() {
       <section className="bg-sky-gradient py-7 sm:py-8 text-center text-white relative overflow-hidden">
         <div className="container mx-auto px-6 relative z-10">
           <h2 className="text-3xl sm:text-4xl font-extrabold font-heading mb-4">
-            Build Your Own Solar Grid with Viyon
+            Build Your Own Solar Grid with Veiyon
           </h2>
           <p className="text-white/80 max-w-md mx-auto mb-8 text-sm">
             Contact our Nagercoil engineering team to set up your onsite system capacity calculation today.

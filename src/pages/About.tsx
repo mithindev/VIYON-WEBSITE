@@ -24,7 +24,7 @@ export default function About() {
       {/* Page Hero */}
       <PageHero
         label="Who We Are"
-        title="About Viyon Smart Solutions"
+        title="About Veiyon Smart Solutions"
         subtitle="Harnessing clean, renewable solar power for energy independence and long-term utility savings."
         currentPage="About Us"
       />
@@ -43,7 +43,7 @@ export default function About() {
             >
               <img
                 src="/assets/7.5kw_cgl.jpg"
-                alt="Viyon Smart Solutions rooftop solar engineers"
+                alt="Veiyon Smart Solutions rooftop solar engineers"
                 className="rounded-2xl shadow-xl w-full aspect-[4/3] object-cover"
               />
             </motion.div>
@@ -59,7 +59,7 @@ export default function About() {
                 From Vision to Clean Energy Leadership
               </h2>
               <p className="text-muted-foreground text-sm leading-relaxed mb-4">
-                Viyon Smart Solutions was established to build reliable solar energy pathways for consumers across Tamil Nadu. Headquartered in Nagercoil, we have scaled our execution capabilities to offer high-quality rooftop and ground-mounted solar power setups.
+                Veiyon Smart Solutions was established to build reliable solar energy pathways for consumers across Tamil Nadu. Headquartered in Nagercoil, we have scaled our execution capabilities to offer high-quality rooftop and ground-mounted solar power setups.
               </p>
               <p className="text-muted-foreground text-sm leading-relaxed mb-6">
                 Over the years, we have delivered tailored energy systems, including standard net-metered residential installations, high-capacity off-grid battery arrays, solar street lighting configurations, and online industrial UPS solutions. Our team guides you at every step, from custom feasibility design to structural execution and localized grid sync setup.
@@ -130,7 +130,7 @@ export default function About() {
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="section-label">Values</span>
             <h2 className="text-3xl sm:text-4xl font-extrabold font-heading text-foreground mt-3 mb-4">
-              What Viyon Stands For
+              What Veiyon Stands For
             </h2>
           </div>
 

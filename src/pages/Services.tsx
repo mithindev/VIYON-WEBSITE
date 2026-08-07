@@ -109,7 +109,7 @@ export default function Services() {
       <PageHero
         label="Feasibility & Setup"
         title="Our Services"
-        subtitle="Viyon Smart Solutions delivers custom solar power setups, industrial backup systems, and smart outdoor lighting arrays."
+        subtitle="Veiyon Smart Solutions delivers custom solar power setups, industrial backup systems, and smart outdoor lighting arrays."
         currentPage="Services"
       />
 

@@ -1,5 +1,5 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {
   Sun,
@@ -12,6 +12,7 @@ import {
   CheckCircle2,
   PhoneCall,
   Leaf,
+  X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import StatStrip from "@/components/StatStrip";
@@ -60,37 +61,52 @@ function Reveal({
 }
 
 export default function Index() {
-
-
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(2);
+  const [isHovered, setIsHovered] = useState(false);
+  const [showPoster, setShowPoster] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowPoster(true);
+    }, 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const carouselSlides = [
     {
       title: "Online UPS",
-      price: "From ₹18,000 / kVA",
+      desc: "Premium backup power systems to protect sensitive electronic systems.",
       image: "/assets/Inverter_Image2.jpg"
     },
     {
-      title: "Inverter",
-      price: "From ₹9,500 / unit",
+      title: "Inverter Systems",
+      desc: "Robust, heavy-duty power backup for homes and offices.",
       image: "/assets/Aldo_inverter.jpg"
     },
     {
-      title: "On Grid",
-      price: "From ₹45,000 / kW",
+      title: "On-Grid Solar",
+      desc: "Maximize savings by feeding clean solar power back to the utility grid.",
       image: "/assets/7.5kw_cgl_topview.jpg"
     },
     {
-      title: "Off Grid",
-      price: "From ₹65,000 / kW",
+      title: "Off-Grid Solar",
+      desc: "Complete power self-sufficiency with high-performance battery banks.",
       image: "/assets/10kw_parakummu_re.jpg"
     },
     {
-      title: "Street Light",
-      price: "From ₹12,500 / unit",
+      title: "Solar Street Light",
+      desc: "Self-charging, weather-resistant smart lighting for outdoor spaces.",
       image: "/assets/IMG20230705144319.jpg"
     }
   ];
+
+  useEffect(() => {
+    if (isHovered) return;
+    const interval = setInterval(() => {
+      setActiveCarouselIndex((prev) => (prev + 1) % carouselSlides.length);
+    }, 2500);
+    return () => clearInterval(interval);
+  }, [isHovered, carouselSlides.length]);
 
   return (
     <div className="overflow-x-hidden">
@@ -123,7 +139,7 @@ export default function Index() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-sky-500 opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-sky-500" />
                 </span>
-                <span className="text-sky-700 text-xs font-bold tracking-[0.18em] uppercase">Nagercoil's #1 Solar Installer</span>
+                <span className="text-sky-700 text-xs font-bold tracking-[0.18em] uppercase">Nagercoil's Trusted solar installer</span>
               </motion.div>
 
               {/* Headline */}
@@ -188,7 +204,7 @@ export default function Index() {
                   className="group relative inline-flex items-center justify-center gap-2 text-white font-bold text-sm px-6 py-3.5 rounded-full bg-gradient-to-r from-sky-600 to-sky-500 hover:from-sky-500 hover:to-sky-400 shadow-[0_10px_25px_rgba(14,165,233,0.2)] hover:shadow-[0_12px_30px_rgba(14,165,233,0.3)] hover:-translate-y-0.5 transition-all duration-300"
                 >
                   <PhoneCall className="h-4 w-4" />
-                  <span>Book a Free Call</span>
+                  <span>Book Free Site Visit</span>
                 </Link>
                 <Link
                   to="/services"
@@ -281,6 +297,49 @@ export default function Index() {
         <div className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none bg-gradient-to-t from-white to-transparent" />
       </section>
 
+      {/* Welcome Poster Modal */}
+      <AnimatePresence>
+        {showPoster && (
+          <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setShowPoster(false)}
+              className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm"
+            />
+
+            {/* Poster Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 30 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 30 }}
+              transition={{ type: "spring", duration: 0.5 }}
+              className="relative max-w-[720px] w-full bg-white rounded-3xl overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.35)] border border-white/10 z-10"
+            >
+              {/* Close Button */}
+              <button
+                onClick={() => setShowPoster(false)}
+                className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/50 hover:bg-black/80 text-white flex items-center justify-center transition-colors shadow-lg hover:scale-105 duration-200 z-20"
+                aria-label="Close modal"
+              >
+                <X className="h-5 w-5" />
+              </button>
+
+              {/* Image */}
+              <div className="w-full h-auto bg-slate-100 relative">
+                <img
+                  src="/assets/veiyon_hybrid_poster.jpg"
+                  alt="Veiyon Hybrid Solar Power Poster"
+                  className="w-full h-auto block"
+                />
+              </div>
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
+
       <StatStrip />
 
       {/* ══════════════ ABOUT PREVIEW ══════════════ */}
@@ -311,7 +370,7 @@ export default function Index() {
                 Powering the Future with Solar &amp; Backup Solutions
               </h2>
               <p className="text-slate-500 leading-relaxed mb-8 text-base">
-                Viyon Smart Solutions harnesses the power of the sun to create sustainable energy solutions for residential, commercial, and industrial clients across Nagercoil and beyond.
+                Veiyon Smart Solutions harnesses the power of the sun to create sustainable energy solutions for residential, commercial, and industrial clients across Nagercoil and beyond.
               </p>
               <ul className="space-y-3.5 mb-10">
                 {[
@@ -355,7 +414,11 @@ export default function Index() {
             <div className="w-16 h-1 bg-sky-500 rounded-full mx-auto mt-3" />
           </Reveal>
 
-          <div className="relative flex flex-col items-center justify-center min-h-[420px] max-w-5xl mx-auto py-6 overflow-visible">
+          <div 
+            onMouseEnter={() => setIsHovered(true)} 
+            onMouseLeave={() => setIsHovered(false)}
+            className="relative flex flex-col items-center justify-center min-h-[420px] max-w-5xl mx-auto py-6 overflow-visible"
+          >
             <div className="relative w-full h-[320px] sm:h-[400px] flex items-center justify-center overflow-visible z-10" style={{ transformStyle:"preserve-3d" }}>
               {carouselSlides.map((slide, i) => {
                 const count = carouselSlides.length;
@@ -378,16 +441,28 @@ export default function Index() {
                   <motion.div
                     key={slide.title}
                     onClick={() => setActiveCarouselIndex(i)}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={0.2}
+                    onDragEnd={(event, info) => {
+                      const swipeThreshold = 50;
+                      if (info.offset.x < -swipeThreshold) {
+                        setActiveCarouselIndex((prev) => (prev + 1) % carouselSlides.length);
+                      } else if (info.offset.x > swipeThreshold) {
+                        setActiveCarouselIndex((prev) => (prev - 1 + carouselSlides.length) % carouselSlides.length);
+                      }
+                    }}
                     className="absolute w-[200px] sm:w-[280px] aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(14,165,233,0.16)] hover:shadow-[0_25px_60px_rgba(14,165,233,0.26)] border-4 border-white bg-white group cursor-pointer transition-shadow duration-300 origin-center"
-                    style={{ transformOrigin:"center center" }}
+                    style={{ transformOrigin:"center center", touchAction: "none" }}
                     animate={{ x:responsiveX, scale, zIndex, opacity, rotateY, filter }}
                     transition={{ type:"spring", stiffness:280, damping:28 }}
                   >
                     <div className="relative w-full h-full">
                       <img src={slide.image} alt={slide.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent p-4 sm:p-5 flex flex-col justify-end text-left transition-opacity duration-300">
-                        <span className="text-[9px] sm:text-[10px] text-sky-400 font-bold uppercase tracking-widest">Est. Price</span>
-                        <span className="text-white text-xs sm:text-base font-extrabold mt-0.5">{slide.price}</span>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent p-4 sm:p-5 flex flex-col justify-end text-left transition-opacity duration-300">
+                        <span className="text-[9px] sm:text-[10px] text-sky-400 font-bold uppercase tracking-widest">Our Service</span>
+                        <span className="text-white text-sm sm:text-lg font-extrabold mt-0.5 leading-tight">{slide.title}</span>
+                        <p className="text-slate-300 text-[9px] sm:text-xs font-medium mt-1 leading-tight line-clamp-2">{slide.desc}</p>
                       </div>
                     </div>
                   </motion.div>
@@ -445,7 +520,7 @@ export default function Index() {
           <Reveal direction="none" className="text-center max-w-2xl mx-auto mb-14">
             <span className="section-label">Why Choose Us</span>
             <h2 className="text-4xl sm:text-5xl font-extrabold font-heading text-slate-900 mt-3 mb-4 leading-[1.08]">
-              Why Homeowners &amp; Businesses Trust Viyon
+              Why Homeowners &amp; Businesses Trust Veiyon
             </h2>
           </Reveal>
 

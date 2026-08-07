@@ -65,9 +65,13 @@ export default function Footer() {
             <div className="flex items-center gap-3.5 mb-5 select-none">
               <img src="/assets/logo_icon.png" alt="Veiyon Smart Solutions" className="h-12 w-auto object-contain" />
               <div className="flex flex-col justify-center leading-none">
-                <span className="font-heading font-extrabold text-2xl leading-none tracking-tighter text-[#0B8F3A]">
-                  VEIYON
-                </span>
+                <div className="font-heading font-extrabold text-2xl leading-none tracking-tighter text-[#0B8F3A] flex items-center select-none">
+                  <span>VEIY</span>
+                  <span className="inline-block w-[1.1em] h-[0.7em] rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 relative mx-[0.08em] shadow-sm shadow-orange-500/25 align-middle">
+                    <span className="absolute right-[0.08em] top-1/2 -translate-y-1/2 w-[0.54em] h-[0.54em] bg-white rounded-full shadow-inner animate-pulse" />
+                  </span>
+                  <span>N</span>
+                </div>
                 <span className="text-[11px] font-semibold tracking-widest text-slate-400 uppercase leading-none mt-1">
                   SMART SOLUTIONS
                 </span>
@@ -102,27 +106,7 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Col 2 – Quick Links */}
-          <div>
-            <h4 className="text-[11px] font-extrabold tracking-[0.18em] uppercase text-sky-400 mb-5 after:block after:w-8 after:h-px after:bg-sky-500/40 after:mt-2">
-              Quick Links
-            </h4>
-            <ul className="space-y-3">
-              {navLinks.map(({ href, label }) => (
-                <li key={href}>
-                  <Link
-                    to={href}
-                    className="text-slate-400 text-xs hover:text-sky-300 transition-colors flex items-center gap-1.5 group"
-                  >
-                    <span className="w-1 h-1 rounded-full bg-sky-500 group-hover:w-2 transition-all duration-200" />
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 3 – Services */}
+          {/* Col 2 – Services */}
           <div>
             <h4 className="text-[11px] font-extrabold tracking-[0.18em] uppercase text-sky-400 mb-5 after:block after:w-8 after:h-px after:bg-sky-500/40 after:mt-2">
               Our Services
@@ -142,7 +126,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Col 4 – Contact */}
+          {/* Col 3 – Contact */}
           <div>
             <h4 className="text-[11px] font-extrabold tracking-[0.18em] uppercase text-sky-400 mb-5 after:block after:w-8 after:h-px after:bg-sky-500/40 after:mt-2">
               Get In Touch
@@ -168,16 +152,36 @@ export default function Footer() {
                 <Mail className="h-4 w-4 text-sky-400 shrink-0 mt-0.5" />
                 <div>
                   <a href="mailto:veiyonsmartsolutions@gmail.com" className="text-slate-400 text-xs hover:text-sky-300 transition-colors block">veiyonsmartsolutions@gmail.com</a>
-                  <a href="mailto:veiyonsmartsolutions@gmail.com" className="text-slate-400 text-xs hover:text-sky-300 transition-colors block">veiyonsmartsolutions@gmail.com</a>
                 </div>
               </div>
 
               <Link
                 to="/contact"
-                className="inline-flex items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300 border border-sky-500/30 hover:border-sky-400 px-4 py-2 rounded-full transition-all mt-1"
+                className="inline-flex w-fit items-center gap-1.5 text-xs font-bold text-sky-400 hover:text-sky-300 border border-sky-500/30 hover:border-sky-400 px-4 py-2 rounded-full transition-all mt-1"
               >
                 Send a Message <ArrowRight className="h-3.5 w-3.5" />
               </Link>
+            </div>
+          </div>
+
+          {/* Col 4 – Map */}
+          <div>
+            <h4 className="text-[11px] font-extrabold tracking-[0.18em] uppercase text-sky-400 mb-5 after:block after:w-8 after:h-px after:bg-sky-500/40 after:mt-2">
+              Our Location
+            </h4>
+            {/* Compact interactive color map */}
+            <div className="rounded-2xl overflow-hidden border border-white/10 shadow-lg h-44 w-full relative">
+              <iframe
+                title="Veiyon Office Location Map"
+                src="https://maps.google.com/maps?q=VEIYON%20SMART%20SOLUTIONS%20Nagercoil&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full h-full"
+              />
             </div>
           </div>
 
@@ -188,7 +192,7 @@ export default function Footer() {
       <div className="border-t border-white/5 bg-black/30">
         <div className="container mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-2 text-[11px] text-slate-500">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 justify-center sm:justify-start">
-            <span>© {new Date().getFullYear()} Viyon Smart Solutions. All rights reserved.</span>
+            <span>© {new Date().getFullYear()} Veiyon Smart Solutions. All rights reserved.</span>
             <span className="text-slate-700">•</span>
             <a href="#" className="hover:text-slate-300 transition-colors">Privacy Policy</a>
             <span className="text-slate-700">•</span>

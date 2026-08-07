@@ -54,9 +54,13 @@ export default function Navbar() {
           <Link to="/" className="flex items-center gap-3.5 shrink-0 select-none">
             <img src="/assets/logo_icon.png" alt="Veiyon Smart Solutions" className="h-11 sm:h-12 w-auto object-contain block" />
             <div className="flex flex-col justify-center leading-none">
-              <span className="font-heading font-extrabold text-xl sm:text-[28px] leading-none tracking-tighter text-[#0B8F3A]">
-                VEIYON
-              </span>
+              <div className="font-heading font-extrabold text-xl sm:text-[28px] leading-none tracking-tighter text-[#0B8F3A] flex items-center select-none">
+                <span>VEIY</span>
+                <span className="inline-block w-[1.1em] h-[0.7em] rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 relative mx-[0.08em] shadow-sm shadow-orange-500/25 align-middle">
+                  <span className="absolute right-[0.08em] top-1/2 -translate-y-1/2 w-[0.54em] h-[0.54em] bg-white rounded-full shadow-inner animate-pulse" />
+                </span>
+                <span>N</span>
+              </div>
               <span className="text-[9px] sm:text-[12px] font-semibold tracking-widest text-[#5F6368] uppercase leading-none mt-1">
                 SMART SOLUTIONS
               </span>

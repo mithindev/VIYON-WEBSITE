@@ -74,7 +74,7 @@ const projectsList: Project[] = [
     date: "September 2025",
     image: "/assets/IMG20230705144319.jpg",
     description: "Autonomous solar street lights fitted with lithium ferro-phosphate battery blocks, integrated solar panels, and smart dusk-to-dawn sensors.",
-    hardware: ["Viyon IP65 Integrated Luminaires", "3.2V LiFePO4 batteries", "Poles & anchoring assemblies"],
+    hardware: ["Veiyon IP65 Integrated Luminaires", "3.2V LiFePO4 batteries", "Poles & anchoring assemblies"],
     savings: "0% Lighting Grid Costs",
   },
   {
@@ -98,7 +98,7 @@ const projectsList: Project[] = [
     date: "February 2025",
     image: "/assets/IMG20230830120011.jpg",
     description: "A premium villa installation providing dual-mode efficiency: grid connection for peak support, and modular battery backups to prevent delicate smart appliances from outages.",
-    hardware: ["Eastman Solar Modules", "Viyon 8kW Hybrid Inverter", "Lithium Battery Blocks"],
+    hardware: ["Eastman Solar Modules", "Veiyon 8kW Hybrid Inverter", "Lithium Battery Blocks"],
     savings: "Seamless failover & surge safety",
   },
   {
