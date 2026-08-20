@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import {
   Sun,
   BatteryCharging,
@@ -61,9 +61,24 @@ function Reveal({
 }
 
 export default function Index() {
+  const navigate = useNavigate();
   const [activeCarouselIndex, setActiveCarouselIndex] = useState(2);
   const [isHovered, setIsHovered] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
+  const [carouselXScale, setCarouselXScale] = useState(1);
+
+  // Responsive carousel scale based on window width
+  useEffect(() => {
+    const updateScale = () => {
+      const w = window.innerWidth;
+      if (w < 400) setCarouselXScale(0.35);
+      else if (w < 640) setCarouselXScale(0.45);
+      else setCarouselXScale(1);
+    };
+    updateScale();
+    window.addEventListener("resize", updateScale, { passive: true });
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -74,26 +89,31 @@ export default function Index() {
 
   const carouselSlides = [
     {
+      id: "online-ups",
       title: "Online UPS",
       desc: "Premium backup power systems to protect sensitive electronic systems.",
       image: "/assets/Inverter_Image2.jpg"
     },
     {
+      id: "online-ups",
       title: "Inverter Systems",
       desc: "Robust, heavy-duty power backup for homes and offices.",
       image: "/assets/Aldo_inverter.jpg"
     },
     {
+      id: "on-grid-solar",
       title: "On-Grid Solar",
       desc: "Maximize savings by feeding clean solar power back to the utility grid.",
       image: "/assets/7.5kw_cgl_topview.jpg"
     },
     {
+      id: "off-grid-solar",
       title: "Off-Grid Solar",
       desc: "Complete power self-sufficiency with high-performance battery banks.",
       image: "/assets/10kw_parakummu_re.jpg"
     },
     {
+      id: "solar-street-light",
       title: "Solar Street Light",
       desc: "Self-charging, weather-resistant smart lighting for outdoor spaces.",
       image: "/assets/IMG20230705144319.jpg"
@@ -148,7 +168,7 @@ export default function Index() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.1, 0.25, 1] }}
-                  className="text-4xl sm:text-5xl xl:text-7xl font-extrabold font-heading leading-[1.05] tracking-tight text-slate-900"
+                  className="text-3xl sm:text-5xl xl:text-7xl font-extrabold font-heading leading-[1.05] tracking-tight text-slate-900"
                 >
                   Power Your Home With{" "}
                   <span className="bg-clip-text text-transparent bg-gradient-to-r from-sky-600 via-sky-500 to-cyan-500 font-extrabold relative inline-block">
@@ -343,7 +363,7 @@ export default function Index() {
       <StatStrip />
 
       {/* ══════════════ ABOUT PREVIEW ══════════════ */}
-      <section className="py-6 sm:py-8 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
 
@@ -355,7 +375,7 @@ export default function Index() {
                   className="rounded-3xl shadow-2xl w-full aspect-[4/3] object-cover"
                 />
                 <div className="absolute -top-4 -left-4 w-full h-full rounded-3xl border-2 border-sky-200 -z-10" />
-                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-sky-500 text-white px-7 py-4 rounded-2xl shadow-xl flex items-center gap-4 whitespace-nowrap">
+                <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 bg-sky-500 text-white px-4 sm:px-7 py-3 sm:py-4 rounded-2xl shadow-xl flex items-center gap-4">
                   <div>
                     <div className="font-extrabold text-3xl text-white leading-none">15+</div>
                     <div className="text-[11px] text-sky-100 mt-1 uppercase tracking-wider">Years Combined Experience</div>
@@ -388,8 +408,8 @@ export default function Index() {
                 ))}
               </ul>
               <Button asChild variant="sky">
-                <Link to="/about" className="group">
-                  Read Our Story
+                <Link to="/how-we-work" className="group">
+                  How we Work
                   <ArrowRight className="h-4 w-4 ml-1 transform group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
@@ -400,7 +420,7 @@ export default function Index() {
 
       {/* ══════════════ SERVICES PREVIEW (3D CAROUSEL) ══════════════ */}
       <section
-        className="py-6 sm:py-8 relative overflow-hidden"
+        className="py-12 sm:py-16 lg:py-24 relative overflow-hidden"
         style={{ background: "linear-gradient(160deg, #e0f4ff 0%, #d0edfb 50%, #e8f8ff 100%)" }}
       >
         <div className="absolute top-0 right-0 w-80 h-80 rounded-full bg-sky-200/50 blur-3xl pointer-events-none -translate-y-1/2 translate-x-1/3" />
@@ -435,12 +455,18 @@ export default function Index() {
                 else if (diff === -2) { x=-400; scale=.72; zIndex=10; opacity=.55; rotateY=40; filter="brightness(.6) blur(1px)"; }
                 else if (diff === 2)  { x=400;  scale=.72; zIndex=10; opacity=.55; rotateY=-40; filter="brightness(.6) blur(1px)"; }
 
-                const responsiveX = typeof window !== "undefined" && window.innerWidth < 640 ? x * 0.45 : x;
+                const responsiveX = x * carouselXScale;
 
                 return (
                   <motion.div
                     key={slide.title}
-                    onClick={() => setActiveCarouselIndex(i)}
+                    onClick={() => {
+                      if (activeCarouselIndex === i) {
+                        navigate(`/services#${slide.id}`);
+                      } else {
+                        setActiveCarouselIndex(i);
+                      }
+                    }}
                     drag="x"
                     dragConstraints={{ left: 0, right: 0 }}
                     dragElastic={0.2}
@@ -482,15 +508,24 @@ export default function Index() {
                 else if (diff === 1)  { x=220;  opacity=.7; }
                 else if (diff === -2) { x=-400; opacity=.3; }
                 else if (diff === 2)  { x=400;  opacity=.3; }
-                const responsiveX = typeof window !== "undefined" && window.innerWidth < 640 ? x * 0.45 : x;
+                const responsiveX = x * carouselXScale;
                 return (
                   <motion.div key={slide.title+"-label"} className="absolute left-1/2 -translate-x-1/2 text-center"
                     animate={{ x:responsiveX, opacity }}
                     transition={{ type:"spring", stiffness:280, damping:28 }}
                   >
-                    <span className={`text-xs sm:text-sm font-bold tracking-wide transition-colors ${diff===0?"text-sky-950 font-extrabold text-base":"text-slate-500"}`}>
-                      {slide.title}
-                    </span>
+                    {diff === 0 ? (
+                      <Link
+                        to={`/services#${slide.id}`}
+                        className="text-xs sm:text-sm font-extrabold text-base tracking-wide transition-colors text-sky-950 hover:text-sky-600 cursor-pointer"
+                      >
+                        {slide.title}
+                      </Link>
+                    ) : (
+                      <span className="text-xs sm:text-sm font-bold tracking-wide text-slate-500">
+                        {slide.title}
+                      </span>
+                    )}
                   </motion.div>
                 );
               })}
@@ -515,7 +550,7 @@ export default function Index() {
       </section>
 
       {/* ══════════════ WHY CHOOSE US ══════════════ */}
-      <section className="py-6 sm:py-8 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6">
           <Reveal direction="none" className="text-center max-w-2xl mx-auto mb-14">
             <span className="section-label">Why Choose Us</span>
@@ -553,7 +588,7 @@ export default function Index() {
 
           <Reveal direction="up" delay={0.2} className="text-center mt-8">
             <Button asChild variant="outline">
-              <Link to="/why-us">Discover Our Differentiators</Link>
+              <Link to="/how-we-work">Learn How We Work</Link>
             </Button>
           </Reveal>
         </div>
@@ -564,7 +599,7 @@ export default function Index() {
 
       {/* ══════════════ CTA BANNER ══════════════ */}
       <section
-        className="relative py-6 sm:py-10 text-center overflow-hidden"
+        className="relative py-12 sm:py-16 lg:py-24 text-center overflow-hidden"
         style={{ background:"linear-gradient(135deg,hsl(200,82%,40%) 0%,hsl(196,90%,52%) 55%,hsl(200,85%,66%) 100%)" }}
       >
         <div className="absolute top-0 left-0 w-72 h-72 rounded-full bg-white/10 blur-3xl pointer-events-none -translate-x-1/2 -translate-y-1/2" />
@@ -589,15 +624,15 @@ export default function Index() {
             <p className="text-white/75 max-w-xl mx-auto mb-10 text-base leading-relaxed">
               Get a customized layout evaluation and a full return-on-investment breakdown for your property — completely free.
             </p>
-            <div className="flex justify-center gap-4 flex-wrap">
+            <div className="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 flex-wrap">
               <Link to="/contact"
-                className="inline-flex items-center gap-2 bg-white text-sky-600 hover:bg-sky-50 font-bold rounded-full px-9 py-4 text-sm shadow-xl hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white text-sky-600 hover:bg-sky-50 font-bold rounded-full w-full sm:w-auto px-5 sm:px-9 py-4 text-sm shadow-xl hover:-translate-y-0.5 transition-all duration-200"
               >
                 <PhoneCall className="h-4 w-4" />
-                Get Free Consultation
+                Get Free Site Visit
               </Link>
               <Link to="/services"
-                className="inline-flex items-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white font-semibold rounded-full px-9 py-4 text-sm hover:-translate-y-0.5 transition-all duration-200"
+                className="inline-flex items-center justify-center gap-2 bg-white/15 hover:bg-white/25 border border-white/30 text-white font-semibold rounded-full w-full sm:w-auto px-5 sm:px-9 py-4 text-sm hover:-translate-y-0.5 transition-all duration-200"
               >
                 Explore Solar Solutions
                 <ArrowRight className="h-4 w-4" />

@@ -6,12 +6,12 @@ import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import WhatsAppCTA from "./components/WhatsAppCTA";
+import ScrollToHash from "./components/ScrollToHash";
 
 // Lazy load pages for fast initial bundle loading
 const Index   = lazy(() => import("./pages/Index"));
-const About   = lazy(() => import("./pages/About"));
+const HowWeWork = lazy(() => import("./pages/HowWeWork"));
 const Services = lazy(() => import("./pages/Services"));
-const WhyUs   = lazy(() => import("./pages/WhyUs"));
 const OurWorks = lazy(() => import("./pages/OurWorks"));
 const Contact = lazy(() => import("./pages/Contact"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -44,9 +44,8 @@ const AnimatedRoutes = () => {
         <Suspense fallback={<PageLoader />}>
           <Routes location={location}>
             <Route path="/" element={<Index />} />
-            <Route path="/about" element={<About />} />
+            <Route path="/how-we-work" element={<HowWeWork />} />
             <Route path="/services" element={<Services />} />
-            <Route path="/why-us" element={<WhyUs />} />
             <Route path="/our-works" element={<OurWorks />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="*" element={<NotFound />} />
@@ -60,6 +59,7 @@ const AnimatedRoutes = () => {
 const AppInner = () => {
   return (
     <div className="flex min-h-screen flex-col bg-background text-foreground font-sans antialiased">
+      <ScrollToHash />
       <Navbar />
       <main className="flex-1 flex flex-col pt-0">
         <AnimatedRoutes />

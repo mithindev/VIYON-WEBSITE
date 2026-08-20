@@ -172,7 +172,7 @@ export default function PartnersMarquee() {
               key={brand.name}
               variants={itemVariants}
               whileHover={{ y: -5, boxShadow: "0 10px 25px -5px rgba(14, 165, 233, 0.15)" }}
-              className={`flex flex-col items-center justify-center gap-4 bg-white rounded-2xl p-6 border transition-all duration-300 group cursor-default aspect-[4/3] ${
+              className={`flex flex-col items-center justify-center gap-3 sm:gap-4 bg-white rounded-2xl p-4 sm:p-6 border transition-all duration-300 group cursor-default aspect-[4/3] ${
                 brand.highlighted
                   ? "border-sky-500 shadow-[0_4px_20px_rgba(14,165,233,0.15)]"
                   : "border-slate-100 shadow-sm hover:border-sky-400 hover:shadow-md"

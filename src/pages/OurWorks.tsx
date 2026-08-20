@@ -148,14 +148,14 @@ export default function OurWorks() {
       />
 
       {/* Filter Tabs */}
-      <section className="py-3 sm:py-4 bg-white border-b border-sky-100/50">
+      <section className="py-4 sm:py-5 bg-white border-b border-sky-100/50">
         <div className="container mx-auto px-6">
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex overflow-x-auto pb-1 gap-2 sm:gap-3 sm:flex-wrap sm:justify-center scrollbar-none" style={{ scrollbarWidth: "none", WebkitOverflowScrolling: "touch" }}>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setActiveFilter(cat)}
-                className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 ${
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs sm:text-sm font-semibold transition-all duration-200 flex-shrink-0 ${
                   activeFilter === cat
                     ? "bg-sky-500 text-white shadow-md shadow-sky-500/20 scale-105"
                     : "bg-sky-50 text-slate-600 hover:bg-sky-100 hover:text-sky-700"
@@ -169,7 +169,7 @@ export default function OurWorks() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-5 sm:py-6">
+      <section className="py-8 sm:py-10 lg:py-14">
         <div className="container mx-auto px-6 max-w-6xl">
           <motion.div
             layout
@@ -281,7 +281,7 @@ export default function OurWorks() {
                 {/* Body Content */}
                 <div className="p-4 sm:p-6 lg:p-8 space-y-5 sm:space-y-6">
                   {/* Meta Strip */}
-                  <div className="grid grid-cols-3 gap-2 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-sky-50 border border-sky-100/50 text-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 sm:gap-4 p-3 sm:p-4 rounded-2xl bg-sky-50 border border-sky-100/50 text-left sm:text-center">
                     <div>
                       <div className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Location</div>
                       <div className="text-slate-700 text-xs sm:text-sm font-semibold mt-1 flex items-center justify-center gap-1">
@@ -340,7 +340,7 @@ export default function OurWorks() {
               </div>
 
               {/* Modal Action footer */}
-              <div className="p-6 border-t border-slate-50 flex items-center justify-end gap-3 bg-slate-50">
+              <div className="p-4 sm:p-6 border-t border-slate-50 flex flex-col sm:flex-row items-stretch sm:items-center justify-end gap-3 bg-slate-50">
                 <Button variant="outline" onClick={() => setSelectedProject(null)}>
                   Close Details
                 </Button>

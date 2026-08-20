@@ -13,7 +13,7 @@ const contactFormSchema = z.object({
   phone: z.string().min(10, { message: "Phone number must be at least 10 digits." }),
   consumption: z.string().min(1, { message: "Consumption units are required." }),
   ebNumber: z.string().optional(),
-  message: z.string().min(5, { message: "Message must be at least 5 characters." }),
+  message: z.string().optional(),
 });
 
 type ContactFormValues = z.infer<typeof contactFormSchema>;
@@ -42,8 +42,7 @@ export default function Contact() {
 *Approx. Consumption:* ${data.consumption}
 *EB Number:* ${data.ebNumber || "Not Provided"}
 
-*Message:*
-${data.message}`;
+*Message:* ${data.message || "Not Provided"}`;
 
       const encodedMessage = encodeURIComponent(messageText);
       const whatsappUrl = `https://wa.me/916381188563?text=${encodedMessage}`;
@@ -57,7 +56,7 @@ ${data.message}`;
   };
 
   return (
-    <div className="pt-28 sm:pt-32 min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-white">
+    <div className="pt-24 sm:pt-32 min-h-screen bg-gradient-to-br from-sky-50 via-blue-50 to-white">
       <div className="container mx-auto px-4 sm:px-6 py-4 sm:py-5">
 
         {/* Section Header */}
@@ -114,7 +113,7 @@ ${data.message}`;
             ))}
 
             {/* Google Maps embed */}
-            <div className="rounded-xl overflow-hidden border border-sky-100 shadow-sm h-44 w-full mt-1">
+            <div className="rounded-xl overflow-hidden border border-sky-100 shadow-sm h-44 sm:h-56 w-full mt-1">
               <iframe
                 title="Veiyon Office Location"
                 src="https://maps.google.com/maps?q=VEIYON%20SMART%20SOLUTIONS%20Nagercoil&t=&z=16&ie=UTF8&iwloc=&output=embed"
@@ -154,7 +153,8 @@ ${data.message}`;
                     <option value="">Select a category</option>
                     <option value="Residential">Residential</option>
                     <option value="Commercial">Commercial</option>
-                    <option value="Residency">Residency</option>
+                    <option value="Industrial">Industrial</option>
+                    <option value="Agricultural">Agricultural</option>
                   </select>
                   {errors.category && <p className="text-red-500 text-[11px]">{errors.category.message}</p>}
                 </div>
@@ -193,7 +193,7 @@ ${data.message}`;
 
               {/* Message */}
               <div className="space-y-1">
-                <Label htmlFor="message" className="text-xs font-semibold text-slate-600">Your Message</Label>
+                <Label htmlFor="message" className="text-xs font-semibold text-slate-600">Your Message (Optional)</Label>
                 <Textarea
                   id="message"
                   placeholder="Tell us about your solar requirements — residential, commercial, capacity, etc."

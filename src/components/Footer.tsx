@@ -5,9 +5,8 @@ import {
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/about", label: "About Us" },
+  { href: "/how-we-work", label: "How we Work" },
   { href: "/services", label: "Our Services" },
-  { href: "/why-us", label: "Why Choose Us" },
   { href: "/our-works", label: "Our Works" },
   { href: "/contact", label: "Contact Us" },
 ];
@@ -37,19 +36,19 @@ export default function Footer() {
 
       {/* CTA Banner */}
       <div className="relative border-b border-white/5">
-        <div className="container mx-auto px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center">
+        <div className="container mx-auto px-4 sm:px-6 py-6 sm:py-8 flex flex-col items-center text-center md:flex-row md:text-left md:items-center justify-between gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <div className="w-10 h-10 rounded-full bg-sky-500/20 flex items-center justify-center shrink-0">
               <Sun className="h-5 w-5 text-sky-400" />
             </div>
             <div>
-              <p className="text-white font-bold text-base leading-tight">Ready to go solar?</p>
+              <p className="text-white font-bold text-sm sm:text-base leading-tight">Ready to go solar?</p>
               <p className="text-slate-400 text-xs">Get a free site assessment from our team.</p>
             </div>
           </div>
           <Link
             to="/contact"
-            className="flex items-center gap-2 bg-sky-500 hover:bg-sky-400 text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all shadow-lg shadow-sky-900/40 shrink-0"
+            className="flex items-center justify-center gap-2 bg-sky-500 hover:bg-sky-400 text-white text-sm font-bold px-5 py-2.5 rounded-full transition-all shadow-lg shadow-sky-900/40 w-full sm:w-auto md:shrink-0"
           >
             Get Free Quote <ArrowRight className="h-4 w-4" />
           </Link>

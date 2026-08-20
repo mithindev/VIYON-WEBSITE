@@ -6,9 +6,8 @@ import { cn } from "@/lib/utils";
 
 const centerLinks = [
   { href: "/",        label: "Home" },
-  { href: "/about",   label: "About" },
+  { href: "/how-we-work", label: "How we Work" },
   { href: "/services",label: "Our Services" },
-  { href: "/why-us",  label: "Why Choose Us" },
   { href: "/our-works",label: "Our Works" },
 ];
 
@@ -49,19 +48,19 @@ export default function Navbar() {
         animate={{ y: 0, x: "-50%" }}
         transition={{ duration: 0.5, ease: [0.25, 0.1, 0.25, 1] }}
       >
-        <div className="container mx-auto px-4 sm:px-6 flex items-center justify-between gap-4 lg:gap-8">
+        <div className="container mx-auto px-3 sm:px-6 flex items-center justify-between gap-2 sm:gap-4 lg:gap-8">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3.5 shrink-0 select-none">
             <img src="/assets/logo_icon.png" alt="Veiyon Smart Solutions" className="h-11 sm:h-12 w-auto object-contain block" />
-            <div className="flex flex-col justify-center leading-none">
-              <div className="font-heading font-extrabold text-xl sm:text-[28px] leading-none tracking-tighter text-[#0B8F3A] flex items-center select-none">
+            <div className="flex flex-col justify-center leading-none min-w-0">
+              <div className="font-heading font-extrabold text-[18px] sm:text-[28px] leading-none tracking-tighter text-[#0B8F3A] flex items-center select-none">
                 <span>VEIY</span>
                 <span className="inline-block w-[1.1em] h-[0.7em] rounded-full bg-gradient-to-r from-amber-500 via-orange-500 to-amber-600 relative mx-[0.08em] shadow-sm shadow-orange-500/25 align-middle">
                   <span className="absolute right-[0.08em] top-1/2 -translate-y-1/2 w-[0.54em] h-[0.54em] bg-white rounded-full shadow-inner animate-pulse" />
                 </span>
                 <span>N</span>
               </div>
-              <span className="text-[9px] sm:text-[12px] font-semibold tracking-widest text-[#5F6368] uppercase leading-none mt-1">
+              <span className="text-[8px] sm:text-[12px] font-semibold tracking-widest text-[#5F6368] uppercase leading-none mt-1">
                 SMART SOLUTIONS
               </span>
             </div>
@@ -100,11 +99,11 @@ export default function Navbar() {
               Contact
             </Link>
             <a
-              href="tel:+919486796006"
+              href="tel:+916381188563"
               className="inline-flex items-center justify-center bg-sky-600 hover:bg-sky-700 text-white transition-all rounded-full px-4 py-2 text-xs font-semibold shadow-md hover:-translate-y-0.5 hover:shadow-lg duration-200 gap-1.5"
             >
               <Phone className="h-3.5 w-3.5" />
-              Call: +91 94867 96006
+              Call: +91 63811 88563
             </a>
           </div>
 
@@ -163,11 +162,11 @@ export default function Navbar() {
                 className="mt-4"
               >
                 <a
-                  href="tel:+919486796006"
+                  href="tel:+916381188563"
                   className="inline-flex items-center justify-center bg-sky-500 hover:bg-sky-600 text-white transition-all rounded-full px-8 py-3 text-base font-bold shadow-md hover:-translate-y-0.5 gap-2"
                 >
                   <Phone className="h-5 w-5" />
-                  Call: +91 94867 96006
+                  Call: +91 63811 88563
                 </a>
               </motion.div>
             </motion.div>

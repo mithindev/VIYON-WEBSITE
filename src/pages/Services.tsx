@@ -17,6 +17,7 @@ import { Button } from "@/components/ui/button";
 
 const servicesList = [
   {
+    id: "on-grid-solar",
     title: "On-Grid Solar Systems",
     description: "Connect your property to the utility grid. Ideal for homes and commercial establishments under the PM Suryagar subsidy program to export surplus energy and slash your monthly electricity bills close to zero.",
     image: "/assets/7.5kw_cgl.jpg",
@@ -30,6 +31,7 @@ const servicesList = [
     tag: "Grid-Tied Efficiency",
   },
   {
+    id: "off-grid-solar",
     title: "Off-Grid Solar Systems",
     description: "Achieve true energy independence. Designed for farms, estates, and remote zones without a stable utility grid, using top-tier high-capacity battery storage banks to power your property 24/7.",
     image: "/assets/10kw_parakummu_re.jpg",
@@ -43,6 +45,7 @@ const servicesList = [
     tag: "100% Energy Autonomy",
   },
   {
+    id: "hybrid-solar",
     title: "Hybrid Solar Systems",
     description: "The absolute best of both worlds. A smart system that utilizes battery storage to protect your appliances during blackouts, while remaining grid-tied to dynamically optimize pricing and fallback support.",
     image: "/assets/7.5kw_cgl_topview.jpg",
@@ -56,6 +59,7 @@ const servicesList = [
     tag: "Smart Power Resiliency",
   },
   {
+    id: "solar-street-light",
     title: "Solar Street Lights",
     description: "Self-sustaining, zero-maintenance public and private lighting arrays. Integrated with high-performance lithium iron phosphate (LiFePO4) storage, smart motion/light sensors, and weather-proof LED frames.",
     image: "/assets/IMG20230705144319.jpg",
@@ -69,6 +73,7 @@ const servicesList = [
     tag: "Eco Outdoor Lighting",
   },
   {
+    id: "solar-water-heater",
     title: "Solar Water Heaters",
     description: "High-grade evacuated tube collector (ETC) thermal systems designed to offset heavy heating load profiles. Ideal for residential apartments, health facilities, hotels, and pre-heating arrays for steam boilers.",
     image: "/assets/IMG20230705144800.jpg",
@@ -82,6 +87,7 @@ const servicesList = [
     tag: "Thermal Water Solutions",
   },
   {
+    id: "online-ups",
     title: "Online UPS Systems",
     description: "Clean, continuous double-conversion backup power engineered for servers, laboratories, and heavy industrial automation machinery. Protects operations against noise, dips, and micro-outages.",
     image: "/assets/Aldo_inverter.jpg",
@@ -114,7 +120,7 @@ export default function Services() {
       />
 
       {/* Intro Section */}
-      <section className="py-6 sm:py-8 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6 text-center max-w-3xl">
           <span className="section-label">Tailored Clean Energy</span>
           <h2 className="text-2xl sm:text-4xl font-extrabold text-slate-900 mt-3 mb-6">
@@ -127,7 +133,7 @@ export default function Services() {
       </section>
 
       {/* Alternate detailed services display */}
-      <section className="py-6 sm:py-8 bg-slate-50">
+      <section className="py-12 sm:py-16 lg:py-24 bg-slate-50">
         <div className="container mx-auto px-6 max-w-6xl space-y-12 sm:space-y-16">
           {servicesList.map((svc, index) => {
             const isEven = index % 2 === 0;
@@ -135,7 +141,8 @@ export default function Services() {
             return (
               <div
                 key={svc.title}
-                className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 ${
+                id={svc.id}
+                className={`flex flex-col lg:flex-row items-center gap-12 lg:gap-16 scroll-mt-28 ${
                   isEven ? "" : "lg:flex-row-reverse"
                 }`}
               >
@@ -198,7 +205,7 @@ export default function Services() {
                     ))}
                   </ul>
 
-                  <div className="flex gap-4">
+                  <div className="flex flex-wrap gap-3">
                     <Button asChild variant="sky">
                       <Link to="/contact">
                         Get Sizing Inquiry
@@ -219,7 +226,7 @@ export default function Services() {
       </section>
 
       {/* Project Execution Process */}
-      <section className="py-6 sm:py-8 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="section-label">Execution Process</span>
@@ -232,7 +239,7 @@ export default function Services() {
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 relative max-w-5xl mx-auto">
-            {/* Background connector line */}
+            {/* Background connector line — desktop only */}
             <div className="hidden lg:block absolute top-[50px] left-[10%] right-[10%] h-0.5 bg-sky-100 z-0" />
 
             {steps.map((item, i) => (

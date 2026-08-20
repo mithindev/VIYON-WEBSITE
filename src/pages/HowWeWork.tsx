@@ -5,7 +5,7 @@ import PageHero from "@/components/PageHero";
 import StatStrip from "@/components/StatStrip";
 import { Button } from "@/components/ui/button";
 
-export default function About() {
+export default function HowWeWork() {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -23,14 +23,14 @@ export default function About() {
     <div>
       {/* Page Hero */}
       <PageHero
-        label="Who We Are"
-        title="About Veiyon Smart Solutions"
+        label="How We Work"
+        title="How Veiyon Works"
         subtitle="Harnessing clean, renewable solar power for energy independence and long-term utility savings."
-        currentPage="About Us"
+        currentPage="How We Work"
       />
 
       {/* Our Story */}
-      <section className="py-5 sm:py-8 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
             
@@ -79,7 +79,7 @@ export default function About() {
       </section>
 
       {/* Mission & Vision */}
-      <section className="py-5 sm:py-8 bg-sky-pale">
+      <section className="py-12 sm:py-16 lg:py-24 bg-sky-pale">
         <div className="container mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             
@@ -88,7 +88,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
-              className="bg-sky-gradient text-white p-7 sm:p-10 rounded-2xl shadow-lg relative overflow-hidden"
+              className="bg-sky-gradient text-white p-5 sm:p-7 lg:p-10 rounded-2xl shadow-lg relative overflow-hidden"
             >
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-white">
                 <Target className="h-6 w-6" />
@@ -105,7 +105,7 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.1 }}
-              className="bg-sky-dark text-white p-7 sm:p-10 rounded-2xl shadow-lg relative overflow-hidden"
+              className="bg-sky-dark text-white p-5 sm:p-7 lg:p-10 rounded-2xl shadow-lg relative overflow-hidden"
             >
               <div className="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-sky-bright">
                 <Eye className="h-6 w-6" />
@@ -125,7 +125,7 @@ export default function About() {
       <StatStrip />
 
       {/* Core Values */}
-      <section className="py-5 sm:py-8 bg-white">
+      <section className="py-12 sm:py-16 lg:py-24 bg-white">
         <div className="container mx-auto px-6">
           <div className="text-center max-w-2xl mx-auto mb-10">
             <span className="section-label">Values</span>

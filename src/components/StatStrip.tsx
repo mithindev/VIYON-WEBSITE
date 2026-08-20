@@ -27,7 +27,7 @@ export default function StatStrip() {
   return (
     <section className="relative z-20 bg-sky-500 py-3 sm:py-4 shadow-lg shadow-sky-500/10">
       <div className="container mx-auto px-6">
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

@@ -15,7 +15,7 @@ export default function PageHero({ label, title, subtitle, currentPage, classNam
   return (
     <section
       className={cn(
-        "relative overflow-hidden bg-sky-gradient pt-28 sm:pt-36 pb-6 sm:pb-8",
+        "relative overflow-hidden bg-sky-gradient pt-24 sm:pt-32 lg:pt-40 pb-8 sm:pb-10 lg:pb-14",
         className
       )}
     >
@@ -58,7 +58,7 @@ export default function PageHero({ label, title, subtitle, currentPage, classNam
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.16 }}
-            className="text-white/80 text-base max-w-xl"
+            className="text-white/80 text-sm sm:text-base max-w-xl"
           >
             {subtitle}
           </motion.p>
