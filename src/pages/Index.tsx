@@ -66,11 +66,13 @@ export default function Index() {
   const [isHovered, setIsHovered] = useState(false);
   const [showPoster, setShowPoster] = useState(false);
   const [carouselXScale, setCarouselXScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
 
   // Responsive carousel scale based on window width
   useEffect(() => {
     const updateScale = () => {
       const w = window.innerWidth;
+      setIsMobile(w < 768);
       if (w < 400) setCarouselXScale(0.35);
       else if (w < 640) setCarouselXScale(0.45);
       else setCarouselXScale(1);
@@ -449,13 +451,38 @@ export default function Index() {
                 let x = 0, scale = 1, zIndex = 10, opacity = 1, rotateY = 0;
                 let filter = "none";
 
-                if (diff === 0) { x=0; scale=1.2; zIndex=30; opacity=1; rotateY=0; filter="none"; }
-                else if (diff === -1) { x=-220; scale=.92; zIndex=20; opacity=.85; rotateY=24; filter="brightness(.9)"; }
-                else if (diff === 1)  { x=220;  scale=.92; zIndex=20; opacity=.85; rotateY=-24; filter="brightness(.9)"; }
-                else if (diff === -2) { x=-400; scale=.72; zIndex=10; opacity=.55; rotateY=40; filter="brightness(.6) blur(1px)"; }
-                else if (diff === 2)  { x=400;  scale=.72; zIndex=10; opacity=.55; rotateY=-40; filter="brightness(.6) blur(1px)"; }
+                if (isMobile) {
+                  if (diff === 0) {
+                    x = 0;
+                    scale = 0.95;
+                    zIndex = 30;
+                    opacity = 1;
+                    rotateY = 0;
+                    filter = "none";
+                  } else if (diff === -1 || diff === 1) {
+                    x = diff * 135;
+                    scale = 0.75;
+                    zIndex = 20;
+                    opacity = 0.4;
+                    rotateY = 0;
+                    filter = "blur(2px) brightness(0.6)";
+                  } else {
+                    x = diff * 150;
+                    scale = 0.6;
+                    zIndex = 10;
+                    opacity = 0;
+                    rotateY = 0;
+                    filter = "blur(4px) brightness(0.4)";
+                  }
+                } else {
+                  if (diff === 0) { x=0; scale=1.2; zIndex=30; opacity=1; rotateY=0; filter="none"; }
+                  else if (diff === -1) { x=-220; scale=.92; zIndex=20; opacity=.85; rotateY=24; filter="brightness(.9)"; }
+                  else if (diff === 1)  { x=220;  scale=.92; zIndex=20; opacity=.85; rotateY=-24; filter="brightness(.9)"; }
+                  else if (diff === -2) { x=-400; scale=.72; zIndex=10; opacity=.55; rotateY=40; filter="brightness(.6) blur(1px)"; }
+                  else if (diff === 2)  { x=400;  scale=.72; zIndex=10; opacity=.55; rotateY=-40; filter="brightness(.6) blur(1px)"; }
+                }
 
-                const responsiveX = x * carouselXScale;
+                const responsiveX = isMobile ? x : x * carouselXScale;
 
                 return (
                   <motion.div
@@ -479,7 +506,11 @@ export default function Index() {
                       }
                     }}
                     className="absolute w-[200px] sm:w-[280px] aspect-[4/5] rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(14,165,233,0.16)] hover:shadow-[0_25px_60px_rgba(14,165,233,0.26)] border-4 border-white bg-white group cursor-pointer transition-shadow duration-300 origin-center"
-                    style={{ transformOrigin:"center center", touchAction: "none" }}
+                    style={{
+                      transformOrigin: "center center",
+                      touchAction: "pan-y",
+                      pointerEvents: isMobile ? (diff === -1 || diff === 0 || diff === 1 ? "auto" : "none") : "auto",
+                    }}
                     animate={{ x:responsiveX, scale, zIndex, opacity, rotateY, filter }}
                     transition={{ type:"spring", stiffness:280, damping:28 }}
                   >
@@ -496,33 +527,46 @@ export default function Index() {
               })}
             </div>
 
-            <div className="relative w-full max-w-[700px] h-[30px] mt-10 z-20">
+            <div className="hidden md:block relative w-full max-w-[700px] h-[30px] mt-10 z-20">
               {carouselSlides.map((slide, i) => {
                 const count = carouselSlides.length;
                 let diff = i - activeCarouselIndex;
                 while (diff < -2) diff += count;
                 while (diff > 2) diff -= count;
                 let x = 0, opacity = 0;
-                if (diff === 0)  { x=0;    opacity=1; }
-                else if (diff === -1) { x=-220; opacity=.7; }
-                else if (diff === 1)  { x=220;  opacity=.7; }
-                else if (diff === -2) { x=-400; opacity=.3; }
-                else if (diff === 2)  { x=400;  opacity=.3; }
-                const responsiveX = x * carouselXScale;
+                if (isMobile) {
+                  if (diff === 0) {
+                    x = 0;
+                    opacity = 1;
+                  } else {
+                    x = diff * 120;
+                    opacity = 0;
+                  }
+                } else {
+                  if (diff === 0)  { x=0;    opacity=1; }
+                  else if (diff === -1) { x=-220; opacity=.7; }
+                  else if (diff === 1)  { x=220;  opacity=.7; }
+                  else if (diff === -2) { x=-400; opacity=.3; }
+                  else if (diff === 2)  { x=400;  opacity=.3; }
+                }
+                const responsiveX = isMobile ? x : x * carouselXScale;
                 return (
-                  <motion.div key={slide.title+"-label"} className="absolute left-1/2 -translate-x-1/2 text-center"
+                  <motion.div
+                    key={slide.title+"-label"}
+                    className="absolute left-1/2 -translate-x-1/2 text-center"
                     animate={{ x:responsiveX, opacity }}
                     transition={{ type:"spring", stiffness:280, damping:28 }}
+                    style={{ pointerEvents: isMobile && diff !== 0 ? "none" : "auto" }}
                   >
                     {diff === 0 ? (
                       <Link
                         to={`/services#${slide.id}`}
-                        className="text-xs sm:text-sm font-extrabold text-base tracking-wide transition-colors text-sky-950 hover:text-sky-600 cursor-pointer"
+                        className="text-xs sm:text-sm font-extrabold text-base tracking-wide transition-colors text-sky-950 hover:text-sky-600 cursor-pointer whitespace-nowrap"
                       >
                         {slide.title}
                       </Link>
                     ) : (
-                      <span className="text-xs sm:text-sm font-bold tracking-wide text-slate-500">
+                      <span className="text-xs sm:text-sm font-bold tracking-wide text-slate-500 whitespace-nowrap">
                         {slide.title}
                       </span>
                     )}
